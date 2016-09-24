@@ -1,0 +1,20 @@
+<% if resource.errors.any? %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="panel panel-danger">
+        <div class="panel panel-heading">
+          <h2 class="panel-title">
+            <%= pluralize(resource.errors.count, "error") %> prevented the <%= resource.class.name.downcase %> from getting created:
+          </h2>
+        </div>
+        <div class="panel panel-body">
+          <ul>
+            <% resource.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
