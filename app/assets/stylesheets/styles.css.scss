@@ -63,6 +63,6 @@ footer a:hover {
   border-top: 1px solid #eaeaea;
   margin-top: 15px;
 }
-.btn a:visited {
-  color: white;
+a, a:visited, a:hover, a:active {
+  color: inherit;
 }
