@@ -11,8 +11,12 @@
           <div class="article-title">
             <%= link_to article.title, article %>
           </div>
+
           <div class="article-description">
             <%= truncate(article.description, length:100) %>
+          </div>
+          <div class="article-description-details">
+            <small>Created by: <%= article.user.username %>, <%= time_ago_in_words(article.created_at) %> ago</small>
           </div>
       </div>
       <% end %>
