@@ -1,14 +1,22 @@
-<h1>All Articles</h1>
-
+<h1 class="text-center">All Articles</h1>
+<p>
+  <%= link_to "Create an article", new_article_path, class:"btn btn-primary" %>
+</p>
 <% if @articles %>
-  <p>
-    <%= link_to "Create an article", new_article_path %>
-  </p>
-  <ul>
-    <% @articles.each do |article| %>
-      <li><%= link_to article.title, article %></li>
-    <% end %>
-  </ul>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <% @articles.each do |article| %>
+      <div class="well wll-lg">
+          <div class="article-title">
+            <%= link_to article.title, article %>
+          </div>
+          <div class="article-description">
+            <%= truncate(article.description, length:100) %>
+          </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
 <% else %>
   <p>
     There aren't any articles yet.  <%= link_to "Add One Now", new_article_path %>
