@@ -38,7 +38,7 @@
     <%= @user.username %> hasn't added any articles yet!
   </p>
 <% end %>
-<% if current_user == @user %>
+<% if current_user == @user || current_user.admin? %>
   <%= link_to 'Edit', edit_user_path(@user) %> |
 <% end %>
 <%= link_to 'Back', users_path %>
