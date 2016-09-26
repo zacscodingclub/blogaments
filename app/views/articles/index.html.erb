@@ -4,6 +4,9 @@
 </div>
 <br>
 <% if @articles %>
+  <div align="center">
+    <%= will_paginate %>
+  </div>
   <div class="row">
     <div class="col-xs-8 col-xs-offset-2">
       <% @articles.each do |article| %>
@@ -21,6 +24,8 @@
       </div>
       <% end %>
     </div>
+  <div align="center">
+    <%= will_paginate %>
   </div>
 <% else %>
   <p>
