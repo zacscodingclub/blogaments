@@ -31,6 +31,7 @@
   </div>
 <% else %>
   <p>
-    There aren't any articles yet.  <%= link_to "Add One Now", new_article_path %>
+    There aren't any articles yet.  Sign up to be the first!
   </p>
+  <% link_to "Signup", signup_path, class:"btn btn-primary" %>
 <% end %>
