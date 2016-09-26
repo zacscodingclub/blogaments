@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   has_many :comments
-  has_many :articles
+  has_many :articles, dependent: :destroy
+
   has_secure_password
+
   before_save { self.email = email.downcase }
 
   VALID_EMAIL_REGEX = /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/
