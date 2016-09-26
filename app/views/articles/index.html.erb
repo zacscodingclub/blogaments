@@ -5,7 +5,7 @@
   </div>
 <% end %>
 <br>
-<% if @articles %>
+<% if @articles.any? %>
   <div align="center">
     <%= will_paginate %>
   </div>
