@@ -2,8 +2,10 @@
 
 one:
   username: MyString
-  email: MyString
+  email: myemail@email.com
+  password_digest: password1
 
 two:
   username: MyString
   email: MyString
+  password_digest: password2

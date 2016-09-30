@@ -27,11 +27,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-
+    binding.pry
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Welcome to Blogaments #{@user.username}!"
-      redirect_to articles_path
+      redirect_to @user
     else
       render 'new'
     end
@@ -40,7 +40,6 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-
     if @user.update(user_params)
       flash[:success] = 'User was successfully updated.'
       redirect_to @user
