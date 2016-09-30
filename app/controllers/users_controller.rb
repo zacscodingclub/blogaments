@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_same_user_or_admin, only: [:edit, :update, :destroy]
+  before_action :require_admin, only: [:destroy]
+
   # GET /users
   # GET /users.json
   def index
@@ -27,7 +29,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
+<<<<<<< HEAD
     binding.pry
+=======
+>>>>>>> 6785a9f6488ac72388c9898da7b391926fb0d990
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Welcome to Blogaments #{@user.username}!"
@@ -52,10 +57,8 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:success] = "User and all articles were successfully deleted"
+    redirect_to users_path
   end
 
   private
@@ -69,8 +72,15 @@ class UsersController < ApplicationController
       params.require(:user).permit(:username, :email, :password)
     end
 
-    def require_same_user
-      if current_user != @user
+    def require_same_user_or_admin
+      if current_user != @user && !current_user.admin?
+        flash[:danger] = "You do not have permission for that action."
+        redirect_to root_path
+      end
+    end
+
+    def require_admin
+      unless current_user.admin?
         flash[:danger] = "You do not have permission for that action."
         redirect_to root_path
       end
