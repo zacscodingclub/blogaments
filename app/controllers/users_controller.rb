@@ -29,10 +29,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-<<<<<<< HEAD
-    binding.pry
-=======
->>>>>>> 6785a9f6488ac72388c9898da7b391926fb0d990
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Welcome to Blogaments #{@user.username}!"
