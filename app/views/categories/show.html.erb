@@ -1,0 +1,10 @@
+<h1 align="center">Category: <%= @category.name %></h1>
+<div align="center">
+  <%= will_paginate @category_articles %>
+</div>
+<% @category_articles.each do |article| %>
+  <%= render 'articles/article', article: article %>
+<% end %>
+<div align="center">
+  <%= will_paginate @category_articles %>
+</div>

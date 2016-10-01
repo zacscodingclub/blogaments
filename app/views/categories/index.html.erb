@@ -2,10 +2,11 @@
 <% @categories.each do |category| %>
   <ul class="listing">
     <div class="row">
-      <div class="well col-md-4 col-md-offset-4">
+      <div class="well col-md-4 col-md-offset-4" align="center">
         <li class="article-title">
           <%= link_to "#{category.name}", category_path(category) %>
-        </li>
+        </li><br>
+        <li><%= pluralize(category.articles.count, 'article') %></li>
       </div>
     </div>
   </ul>

@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :comments
   resources :users, except: [:new]
   resources :articles
-  resources :categories, except: [:edit, :update, :destroy]
+  resources :categories, except: [:destroy]
 end
