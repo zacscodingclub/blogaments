@@ -1,22 +1,33 @@
 require 'test_helper'
 
-class CategoriesControllerTest < ActionDispatch::IntegrationTest
+class CategoriesControllerTest < ActionController::TestCase
   def setup
+    request.host = "www.example.com"
     @category = categories(:one)
+    @user = users(:two)
   end
 
   test "should get index" do
-    get categories_url
+    get :index
     assert_response :success
   end
 
   test "should get new" do
-    get new_category_url
+    session[:user_id] = @user.id
+    get :new
     assert_response :success
   end
 
   test "should get show" do
-    get category_url(@category)
+    get :show, params: { 'id': @category.id }
     assert_response :success
+  end
+
+  test "should redirect create when admin not logged in" do
+    assert_no_difference 'Category.count' do
+      post :create, params: { category: { name: "some name" } }
+    end
+
+    assert_redirected_to categories_path
   end
 end

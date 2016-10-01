@@ -6,6 +6,7 @@ one:
   password_digest: password1
 
 two:
-  username: MyString
-  email: MyString
+  username: MyString1
+  email: MyString@gmail.com
   password_digest: password2
+  admin: true

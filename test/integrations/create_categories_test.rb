@@ -3,9 +3,11 @@ require 'test_helper'
 class CreateCategoriesTest < ActionDispatch::IntegrationTest
   def setup
     @category = categories(:one)
+    @user = User.create(username:"bob", email: "bob@example.com", password:"password", admin: true)
   end
 
   test "should create category" do
+    login(@user, 'password')
     # post comments_url, params: { comment: { description: @comment.description, user_id: @comment.user_id } }
     assert_difference('Category.count') do
       post categories_url, params: { category: { name: "test" } }
@@ -17,6 +19,7 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "should not create a category" do
+    login(@user, 'password')
     get new_category_path
     assert_template 'categories/new'
 
